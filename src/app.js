@@ -5,7 +5,7 @@ para lo de la vulnerabilidad
 
 const http = require("http");
 
-const reader = require("./src/utils/page-reader")
+const reader = require("./utils/page-reader")
 
 const server = http.createServer((req, res) => {
     if (req.url.match("\.css$")) {
