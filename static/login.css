@@ -1,6 +1,8 @@
 * {
     padding: 0;
     margin: 0;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 navbar {
@@ -11,6 +13,4 @@ navbar {
     color: white;
 
     font-size: 1.5em;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
 }
