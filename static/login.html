@@ -13,14 +13,19 @@
     <navbar>
         <span class="app-title">🔓 sApp</span>
     </navbar>
-    <h1>Login</h1>
-    <form action="data" method="POST">
-        <label for="user">Username</label>
-        <input name="username" type="text" id="user">
-        <label for="pass">Password</label>
-        <input name="password" type="password" id="pass">
-        <button type="submit">Login</button>
-    </form>
+    <div id="login-box">
+        <h1>Login</h1>
+        <form action="data" method="POST" id="login-form">
+            <label for="user-input">Username</label>
+            <input name="username" type="text" id="user-input">
+            <label for="pass-input">Password</label>
+            <input name="password" type="password" id="pass-input">
+            <button type="submit" id="login-button">Login</button>
+        </form>
+    </div>
+    <video autoplay muted loop id="bg-video">
+        <source src="background.mp4" type="video/mp4">
+    </video>
 </body>
 
 </html>

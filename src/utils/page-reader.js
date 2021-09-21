@@ -10,17 +10,17 @@ function getHtmlFromFile(htmlFileName) {
     return html;
 }
 
-function getCssFromFile(cssFileName) {
-    let css = null;
+function getResourceFromFile(resourceFileName) {
+    let resource = null;
     try {
-        css = fs.readFileSync(`./static/${cssFileName}.css`);
+        resource = fs.readFileSync(`./static/${resourceFileName}`);
     } catch (e) {
-        console.log(`[ERROR] > ${cssFileName}.html not found in path "./static/${cssFileName}.html"`);
+        console.log(`[ERROR] > ${resourceFileName} not found in path "./static/${resourceFileName}"`);
     }
-    return css;
+    return resource;
 }
 
 module.exports = {
     getHtmlFromFile,
-    getCssFromFile
+    getResourceFromFile
 }

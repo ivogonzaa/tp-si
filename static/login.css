@@ -9,12 +9,60 @@ html {
     height: 100%;
 }
 
+#bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+/* Navbar */
 navbar {
     display: block;
     height: 30px;
     padding: .5em;
-    background-color: darkcyan;
-    color: white;
 
+    background-color: #00080AA0;
+    backdrop-filter: blur(4px);
+    color: gainsboro;
+    
     font-size: 1.5em;
+}
+
+/* Login */
+#login-box {
+    width: 25%;
+    height: 10%;
+    margin: 20% auto;
+    padding: 1em 1em;
+
+    background-color: #00080AA0;
+    color:gainsboro;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+}
+
+#login-form {
+    margin: 0;
+    padding: 0;
+}
+
+#login-box > *, 
+#login-box > * > * {
+    display: block;
+    width: 100%;
+}
+
+#login-form > input,
+#login-button {
+    border-style: none;
+    border-radius: 5px;
+    height: 1.5em;
+}
+
+#login-button {
+    margin-top: 1em;
+    height: 2em;
 }

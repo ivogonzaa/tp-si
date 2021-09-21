@@ -18,12 +18,11 @@ const server = https.createServer(options, async (req, res) => {
     //Posts' data
     const data = await getData(req);
 
-    //Css
-    if (req.url.match("\.css$")) {
-        const cssFileName = req.url.slice(1, -4);
-        const css = reader.getCssFromFile(cssFileName);
-        res.writeHead(200, { 'Content-Type': 'text/css', 'Content-Length': css.length });
-        res.end(css);
+    //Resource
+    if (req.url.match("\/.+\.(mp4|css)")) {
+        const resourceFileName = req.url.slice(1);
+        const resource = reader.getResourceFromFile(resourceFileName);
+        res.end(resource);
         return;
     }
     //Urls
