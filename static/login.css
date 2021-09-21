@@ -3,6 +3,7 @@
     margin: 0;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
 }
 
 html {
@@ -21,7 +22,7 @@ html {
 /* Navbar */
 navbar {
     display: block;
-    height: 30px;
+    height: 10%;
     padding: .5em;
 
     background-color: #00080AA0;
@@ -34,6 +35,7 @@ navbar {
 /* Login */
 #login-box {
     width: 25%;
+    min-width: 500px;
     height: 10%;
     margin: 20% auto;
     padding: 1em 1em;
@@ -55,14 +57,27 @@ navbar {
     width: 100%;
 }
 
+/* Login Inputs */
+#login-form > label {
+    margin-top: .5em;
+}
+
+#login-form > input {
+    border-style: none;
+    height: 1.5em;
+    padding-left: .5em;
+
+}
+
+/* Login Button */
+#login-button {
+    margin-top: 1em;
+    height: 2em;
+}
+
+/* Login Inputs & Button */
 #login-form > input,
 #login-button {
     border-style: none;
     border-radius: 5px;
-    height: 1.5em;
-}
-
-#login-button {
-    margin-top: 1em;
-    height: 2em;
 }
