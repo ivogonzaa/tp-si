@@ -5,7 +5,7 @@ function getHtmlFromFile(htmlFileName) {
     try {
         html = fs.readFileSync(`./static/${htmlFileName}.html`);
     } catch (e) {
-        console.log(e);
+        console.log(`[ERROR] > ${htmlFileName}.html not found in path "./static/${htmlFileName}.html"`);
     }
     return html;
 }
@@ -15,24 +15,12 @@ function getCssFromFile(cssFileName) {
     try {
         css = fs.readFileSync(`./static/${cssFileName}.css`);
     } catch (e) {
-        console.log(e);
+        console.log(`[ERROR] > ${cssFileName}.html not found in path "./static/${cssFileName}.html"`);
     }
     return css;
 }
 
-function getHtmlCssFromFile(fileName) {
-    try {
-        return {
-            html: getHtmlFromFile(fileName),
-            css: getCssFromFile(fileName)
-        }
-    } catch (e) {
-        console.log(e);
-    }
-}
-
 module.exports = {
     getHtmlFromFile,
-    getCssFromFile,
-    getHtmlCssFromFile
+    getCssFromFile
 }

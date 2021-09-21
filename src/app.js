@@ -1,7 +1,9 @@
 const https = require("https");
 const fs = require("fs");
 
-const reader = require("./utils/page-reader")
+const reader = require("./utils/page-reader");
+const customPages = require("./utils/custom-pages");
+const { getData } = require("./utils/posts");
 
 const options = {
     key: fs.readFileSync("./cert/key.pem"),
@@ -10,7 +12,12 @@ const options = {
     rejectUnauthorized: false
 }
 
-const server = https.createServer(options, (req, res) => {
+const server = https.createServer(options, async (req, res) => {
+    console.log(`[REQUEST] > ${req.url}`);
+
+    //Posts' data
+    const data = await getData(req);
+
     //Css
     if (req.url.match("\.css$")) {
         const cssFileName = req.url.slice(1, -4);
@@ -20,6 +27,11 @@ const server = https.createServer(options, (req, res) => {
         return;
     }
     //Urls
+    if (customPages.isCustomPage(req.url)) {
+        res.end(customPages.getCustomPageResponse(req, res, data));
+        return;
+    }
+
     const htmlFileName = req.url.slice(1);
     const html = reader.getHtmlFromFile(htmlFileName);
     if (html && req.url.match("(\/\w*)+")) {
@@ -33,4 +45,4 @@ const server = https.createServer(options, (req, res) => {
 });
 
 server.listen(3000);
-console.log("Escuchando localhost:3000");
+console.log("[SERVER] > Listening localhost:3000");
