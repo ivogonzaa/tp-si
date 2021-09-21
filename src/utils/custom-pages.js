@@ -11,8 +11,8 @@ const customPages = [
     {
         url: "/data",
         callback: (req, res, data) => {
-            const dataObj = Formatter.dataToObject(data);
-            const authorized = Sessions.loginIsAuthorized(dataObj.username, dataObj.password);
+            const { username, password } = Formatter.dataToObject(data);
+            const authorized = Sessions.loginIsAuthorized(username, password);
             if (authorized)
                 return JSON.stringify(require("../../database/users"))
 
