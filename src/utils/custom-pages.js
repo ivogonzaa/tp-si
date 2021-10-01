@@ -1,5 +1,7 @@
 const Formatter = require("./data-formatter");
 const Sessions = require("./sessions");
+const https = require("https")
+const { getData } = require("./posts");
 
 const customPages = [
     {
@@ -10,11 +12,18 @@ const customPages = [
     },
     {
         url: "/data",
-        callback: (req, res, data) => {
+        callback: async (req, res, data) => {
             const { username, password } = Formatter.dataToObject(data);
             const authorized = Sessions.loginIsAuthorized(username, password);
-            if (authorized)
-                return JSON.stringify(require("../../database/users"))
+            if (authorized) {
+                return new Promise((rsv, rej) => {
+                    https.get("https://localhost:3001", global.options,
+                        async r => {
+                            const info = await getData(r);
+                            rsv(info);
+                        })
+                })
+            }
 
             res.writeHead(302, { location: "https://localhost:3000/login" });
             return "";
@@ -26,9 +35,9 @@ function isCustomPage(url) {
     return customPages.some(p => p.url === url);
 }
 
-function getCustomPageResponse(req, res, data) {
+async function getCustomPageResponse(req, res, data) {
     const page = customPages.find(p => p.url === req.url)
-    const response = page.callback(req, res, data);
+    const response = await page.callback(req, res, data);
     return response;
 }
 

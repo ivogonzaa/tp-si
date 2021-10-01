@@ -5,9 +5,9 @@ const reader = require("./utils/page-reader");
 const customPages = require("./utils/custom-pages");
 const { getData } = require("./utils/posts");
 
-const options = {
-    key: fs.readFileSync("./cert/key.pem"),
-    cert: fs.readFileSync("./cert/cert.pem"),
+global.options = {
+    key: fs.readFileSync("./cert/sv/key.pem"),
+    cert: fs.readFileSync("./cert/sv/cert.pem"),
     requestCert: true,
     rejectUnauthorized: false
 }
@@ -27,7 +27,7 @@ const server = https.createServer(options, async (req, res) => {
     }
     //Urls
     if (customPages.isCustomPage(req.url)) {
-        res.end(customPages.getCustomPageResponse(req, res, data));
+        res.end(await customPages.getCustomPageResponse(req, res, data));
         return;
     }
 

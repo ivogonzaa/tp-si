@@ -18,6 +18,9 @@ async function getData(req) {
         console.log("[SERVER] > Data ended from request.");
         console.log(`[DATA] > ${data}`);
     })
+    req.on("error", function (err) {
+        console.log(err.message)
+    })
 
     //Wait until data is finally loaded.
     while (!endedStream) {
