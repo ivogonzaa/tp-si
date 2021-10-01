@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "server": "node src/app.js",
-    "db": "node src/app2.js"
+    "sv": "node src/sv.js",
+    "db": "node src/db.js"
   },
   "repository": {
     "type": "git",
