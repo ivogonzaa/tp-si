@@ -16,13 +16,15 @@ const customPages = [
             const { username, password } = Formatter.dataToObject(data);
             const authorized = Sessions.loginIsAuthorized(username, password);
             if (authorized) {
-                return new Promise((rsv, rej) => {
+                let prendas = await new Promise((rsv, rej) => {
                     https.get("https://localhost:3001", global.options,
                         async r => {
                             const info = await getData(r);
                             rsv(info);
                         })
                 })
+                prendas = await JSON.parse(prendas);
+                return require("../custom-pages/data")(prendas);
             }
 
             res.writeHead(302, { location: "https://localhost:3000/login" });

@@ -19,7 +19,7 @@ const server = https.createServer(options, async (req, res) => {
     const data = await getData(req);
 
     //Resource
-    if (req.url.match("\/.+\.(mp4|css)")) {
+    if (req.url.match("\/.+\.(mp4|css|jpg)")) {
         const resourceFileName = req.url.slice(1);
         const resource = reader.getResourceFromFile(resourceFileName);
         res.end(resource);

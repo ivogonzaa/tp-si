@@ -19,19 +19,6 @@ html {
     z-index: -1;
 }
 
-/* Navbar */
-navbar {
-    display: block;
-    height: 10%;
-    padding: .5em;
-
-    background-color: #00080AA0;
-    backdrop-filter: blur(4px);
-    color: gainsboro;
-    
-    font-size: 1.5em;
-}
-
 /* Login */
 #login-box {
     width: 25%;

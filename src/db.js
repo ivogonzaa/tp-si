@@ -15,7 +15,7 @@ const options = {
 const server = https.createServer(options, async (req, res) => {
     if (req.method != "GET") return;
     console.log(`[DB] GET en ${req.url}`)
-    const data = JSON.stringify(require("../database/users"));
+    const data = JSON.stringify(require("../database/prendas"));
 
     res.end(data)
 });
