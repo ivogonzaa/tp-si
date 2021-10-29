@@ -7,7 +7,7 @@ const customPages = [
     {
         url: "/",
         callback: (req, res, data) => {
-            res.writeHead(302, { location: "https://localhost:3000/login" });
+            res.writeHead(302, { location: "http://localhost:3000/login" });
         }
     },
     {
@@ -17,17 +17,36 @@ const customPages = [
             const authorized = Sessions.loginIsAuthorized(username, password);
             if (authorized) {
                 let prendas = await new Promise((rsv, rej) => {
-                    https.get("https://localhost:3001", global.options,
+
+                    //Código vulnerable
+                    const options = {
+                        requestCert: true,
+                        rejectUnauthorized: undefined,
+                        path: 'https://tpsi.azurewebsites.net/prendas',
+                    }
+
+                    //Contramedida
+                      if (options.rejectUnauthorized == undefined)
+                        rsv(null);
+
+                    https.get(options,
                         async r => {
                             const info = await getData(r);
                             rsv(info);
-                        })
-                })
-                prendas = await JSON.parse(prendas);
-                return require("../custom-pages/data")(prendas);
+                        });
+                });
+
+                if (prendas != null)  {
+                    prendas = await JSON.parse(prendas);
+                    return require("../custom-pages/data")(prendas);
+                }
+                else {
+                    res.writeHead(302, { location: "http://localhost:3000/error" });
+                    return '';
+                }
             }
 
-            res.writeHead(302, { location: "https://localhost:3000/login" });
+            res.writeHead(302, { location: "http://localhost:3000/login" });
             return "";
         }
     }

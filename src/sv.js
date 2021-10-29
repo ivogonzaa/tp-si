@@ -1,18 +1,13 @@
-const https = require("https");
+const http = require("http");
 const fs = require("fs");
 
 const reader = require("./utils/page-reader");
 const customPages = require("./utils/custom-pages");
 const { getData } = require("./utils/posts");
 
-global.options = {
-    key: fs.readFileSync("./cert/sv/key.pem"),
-    cert: fs.readFileSync("./cert/sv/cert.pem"),
-    requestCert: true,
-    rejectUnauthorized: false
-}
 
-const server = https.createServer(options, async (req, res) => {
+
+const server = http.createServer( async (req, res) => {
     console.log(`[REQUEST] > ${req.url}`);
 
     //Posts' data
